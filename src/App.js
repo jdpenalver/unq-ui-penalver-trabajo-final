@@ -19,7 +19,7 @@ function App() {
               <Route path="/game/players" element={<Players />}/>
               <Route path="/game/name" element={<PlayerName />}/>
               <Route path="/game/size" element={<SeleccionCuadricula />}/>
-              <Route path="/game/startgame" element={<StartGame />}/>
+              <Route path="/game/startgame/:size" element={<StartGame />}/>
             </Route>
           </Routes>
         </BrowserRouter>

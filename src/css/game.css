@@ -1,4 +1,4 @@
-.tamano-2{
+.tamano-2x2{
     display: grid;
     grid-template-columns: repeat(2, 10rem) ;
     grid-auto-rows: repeat(2, 10rem);
@@ -6,7 +6,7 @@
     justify-content: center;
     gap: 1rem;
 }
-.tamano-4{
+.tamano-4x4{
     display: grid;
     grid-template-columns: repeat(4, 10rem) ;
     grid-auto-rows: repeat(4, 10rem);
@@ -14,7 +14,7 @@
     justify-content: center;
     gap: 1rem;
 }
-.tamano-8{
+.tamano-8x8{
     display: grid;
     grid-template-columns: repeat(8, 10rem) ;
     grid-auto-rows: repeat(8, 10rem);
@@ -22,7 +22,7 @@
     justify-content: center;
     gap: 1rem;
 }
-.tamano-16{
+.tamano-16x16{
     display: grid;
     grid-template-columns: repeat(16, 10rem) ;
     grid-auto-rows: repeat(16, 10rem);

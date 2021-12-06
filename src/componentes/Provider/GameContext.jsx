@@ -10,8 +10,9 @@ export const P1Provider = ({children}) => {
   
     const [Name, setName] = useState('')
     const [Score, setScore] = useState(0)
+    const [selected, setSelected] = useState('')
   
-     const usuario1 = {Name,setName,Score,setScore}      
+     const usuario1 = {Name,setName,Score,setScore,selected,setSelected}      
 
       return (
           <P1Context.Provider value = {{usuario1}}>

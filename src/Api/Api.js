@@ -15,7 +15,7 @@ const get = (path) => axios.get(server+path, {
 
 const searchPhoto = (theme) => get(`search?query=${theme}`)
 
-const searchQTPhoto = (theme, qt) => get(`search?query=${theme}&page=1&per_page=${qt}`)
+const searchQTPhoto = (theme, qt) => get(`search?query=${theme}&orientation=square&page=1&per_page=${qt}`)
                                     .then(({data}) => data.photos)
 
 
