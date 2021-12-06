@@ -1,0 +1,8 @@
+.carta {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 10rem;
+    height: 10rem;
+    border: 1px dashed red;
+}

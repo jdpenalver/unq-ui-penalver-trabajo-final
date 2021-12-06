@@ -1,0 +1,9 @@
+.grd-center {
+    margin: 1rem;
+    display: grid;
+    grid-auto-flow: dense;
+    grid-auto-rows: 10rem;
+    
+    grid-template-columns:repeat(auto-fill, minmax(10rem,5rem));
+    gap: 2rem
+}

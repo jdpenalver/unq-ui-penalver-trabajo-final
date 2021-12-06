@@ -1,0 +1,42 @@
+.tamano-2{
+    display: grid;
+    grid-template-columns: repeat(2, 10rem) ;
+    grid-auto-rows: repeat(2, 10rem);
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.tamano-4{
+    display: grid;
+    grid-template-columns: repeat(4, 10rem) ;
+    grid-auto-rows: repeat(4, 10rem);
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.tamano-8{
+    display: grid;
+    grid-template-columns: repeat(8, 10rem) ;
+    grid-auto-rows: repeat(8, 10rem);
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.tamano-16{
+    display: grid;
+    grid-template-columns: repeat(16, 10rem) ;
+    grid-auto-rows: repeat(16, 10rem);
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+.cuadricula{
+    width: 45rem;
+    height: 100%;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
