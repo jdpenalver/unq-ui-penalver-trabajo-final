@@ -5,13 +5,14 @@ import { useParams } from 'react-router'
 import { Api } from '../Api/Api'
 import { funcionesArray } from '../funciones/arrayFn'
 
-const StartGame = ( {tamano}) => {
+const StartGame = ( ) => {
 
 const [fotos, setfotos]= useState([])
 const {size} = useParams()
 const [fotosDuplicadas, setfotosduplicadas]= useState([])
+const [hideCompone, sethideCompone]= useState([])
+const [toRender, settoRender]= useState([])
 
-const [selecionado, setselect]= useState('')
 
 useEffect(() => {
     let load = true
@@ -20,59 +21,44 @@ useEffect(() => {
             .then( fotos=> {
                  setfotos(fotos)
                 let tmp = funcionesArray.duplicarValores(fotos)
-                setfotosduplicadas(funcionesArray.mezclar(tmp))
-                      
+                setfotosduplicadas(funcionesArray.mezclar(tmp))                      
         })
         load=false
     }
     
 }, [])
-let cliqueados = []
 
- const selectClick = (e, quitarClick, estado) => {
-    // cliqueados.push(quitarClick)
-    // console.log(estado)
+let selecion = {
+    id:'', 
+    fn:''
+    }
 
-    // if (selecionado == '') {
-    //     setselect(e.target.id)
-    //     quitarClick()
-    // } else {
-    //     if(selecionado === e.target.id){
-    //         console.log("Gano")
-    //     }else {
-    //         console.log("Perdio")
-    //         cliqueados.forEach((hablitarClick) =>{ 
-    //             hablitarClick()
-    //         console.log(cliqueados)
-    //         })
-    //     }
-    //     setselect('')
-    // }
-}
-
-let fnSelecionar
-let elementoSelecionado
-
-const leHicieronClick = (e, selecionado, handlerEventClick) => {
-    if (!selecionado) {
-        handlerEventClick() //saca evento de click
-        if (!elementoSelecionado) {
-            elementoSelecionado= e.target.id
-            fnSelecionar = handlerEventClick // guardo event
+const verficiarCarta =  (set, estaSeleccionado,id) => {
+    if(!estaSeleccionado) {
+        set(!estaSeleccionado)
+        if( selecion.id== '')  {
+            selecion.id=id
+            selecion.fn=set
+            console.log("esta Vacio")
         } else {
-            if (elementoSelecionado == e.target.id) {
+            if (selecion.id == id) {
+                set(true)
+                selecion.fn(true)
                 console.log("Gano")
+                console.log(estaSeleccionado)
+                
+                selecion.fn = ''
+                selecion.id = ''
             }else{
                 console.log("Perdio")
-                fnSelecionar()
-                handlerEventClick()
+                selecion.fn(false)
+                set(false)
+                selecion.fn = ''
+                selecion.id = ''
             }
         }
-    } else {console.log("Ya estas Selecionado")}
-
-
+    }
 }
-
 
 let photoToTake;
 switch (size) {
@@ -95,7 +81,7 @@ const estiloDeGrilla= "tamano-" + size
             <div className={estiloDeGrilla}> 
             {
             fotosDuplicadas.map ((unaFoto) => 
-            <Carta leHicieron= {leHicieronClick} handler={selectClick} idDeFoto={unaFoto.id} urlFoto ={unaFoto.src.small} /> )
+            <Carta padre={verficiarCarta} idDeFoto={unaFoto.id} urlFoto ={unaFoto.src.small} /> )
             }
             </div>
         </div>
