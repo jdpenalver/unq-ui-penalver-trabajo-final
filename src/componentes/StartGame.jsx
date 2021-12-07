@@ -35,26 +35,26 @@ let selecion = {
 
 const verficiarCarta =  (set, estaSeleccionado,id) => {
     if(!estaSeleccionado) {
-        set(!estaSeleccionado)
         if( selecion.id== '')  {
+            set(!estaSeleccionado)
             selecion.id=id
             selecion.fn=set
             console.log("esta Vacio")
         } else {
             if (selecion.id == id) {
                 set(true)
-                selecion.fn(true)
-                console.log("Gano")
-                console.log(estaSeleccionado)
-                
+                selecion.fn(true)  
                 selecion.fn = ''
                 selecion.id = ''
             }else{
                 console.log("Perdio")
-                selecion.fn(false)
-                set(false)
-                selecion.fn = ''
-                selecion.id = ''
+                set(true)
+                setTimeout (()=> {
+                    set(false)
+                   selecion.fn(false) 
+                    selecion.fn = ''
+                selecion.id = '' 
+                }, 800)
             }
         }
     }
