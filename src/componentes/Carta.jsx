@@ -15,7 +15,6 @@ const Carta = ({idDeFoto, urlFoto, padre, leHicieron}) => {
  
   
   const handlerSelecion = () => {
-    // setSelecionado(!selecionado)
    padre(setSelecionado, selecionado,idDeFoto)
   }
 

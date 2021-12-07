@@ -4,14 +4,21 @@ import Carta from './Carta'
 import { useParams } from 'react-router'
 import { Api } from '../Api/Api'
 import { funcionesArray } from '../funciones/arrayFn'
+import { P1Context } from './Provider/GameContext'
+import { useContext } from 'react'
+import Gano from './Gano'
 
 const StartGame = ( ) => {
+
 
 const [fotos, setfotos]= useState([])
 const {size} = useParams()
 const [fotosDuplicadas, setfotosduplicadas]= useState([])
-const [hideCompone, sethideCompone]= useState([])
-const [toRender, settoRender]= useState([])
+const {usuario1} = useContext(P1Context)
+const [haGanado, setHaGando]= useState(false)
+const [cantDeCartas, setCatidadDeCartas] = useState(2)
+
+const puntosPorPar = 10
 
 
 useEffect(() => {
@@ -21,40 +28,55 @@ useEffect(() => {
             .then( fotos=> {
                  setfotos(fotos)
                 let tmp = funcionesArray.duplicarValores(fotos)
-                setfotosduplicadas(funcionesArray.mezclar(tmp))                      
+                setfotosduplicadas(funcionesArray.mezclar(tmp))                  
         })
         load=false
     }
     
 }, [])
 
+
 let selecion = {
     id:'', 
     fn:''
+}
+const verificarSiGano = () => {
+    if (cantDeCartas == fotosDuplicadas.length) {
+        
+        setHaGando(true)
     }
+}
 
+let enEspera= true    
 const verficiarCarta =  (set, estaSeleccionado,id) => {
-    if(!estaSeleccionado) {
-        if( selecion.id== '')  {
-            set(!estaSeleccionado)
-            selecion.id=id
-            selecion.fn=set
-            console.log("esta Vacio")
-        } else {
-            if (selecion.id == id) {
-                set(true)
-                selecion.fn(true)  
-                selecion.fn = ''
-                selecion.id = ''
-            }else{
-                console.log("Perdio")
-                set(true)
-                setTimeout (()=> {
-                    set(false)
-                   selecion.fn(false) 
+    if (enEspera) {
+        if(!estaSeleccionado) {
+            if( selecion.id== '')  {
+                set(!estaSeleccionado)
+                selecion.id=id
+                selecion.fn=set
+            } else {
+                if (selecion.id == id) {
+                    usuario1.setScore(usuario1.Score + puntosPorPar)
+                    setCatidadDeCartas(cantDeCartas + 2)
+                    console.log("====Cantidad de Cartas===")
+                    console.log(cantDeCartas)
+                    verificarSiGano()       
+                    set(true)
+                    selecion.fn(true)  
                     selecion.fn = ''
-                selecion.id = '' 
-                }, 800)
+                    selecion.id = ''
+                }else{
+                    enEspera= false
+                    set(true)
+                    setTimeout (()=> {
+                        set(false)
+                        selecion.fn(false) 
+                        enEspera= true
+                        selecion.fn = ''
+                        selecion.id = '' 
+                    }, 800)
+                }
             }
         }
     }
@@ -75,7 +97,7 @@ switch (size) {
 }
 
 const estiloDeGrilla= "tamano-" + size
-
+if (!haGanado) {
     return (
         <div className="cuadricula">
             <div className={estiloDeGrilla}> 
@@ -86,5 +108,8 @@ const estiloDeGrilla= "tamano-" + size
             </div>
         </div>
     )
+    }else {
+        return <Gano></Gano>
+    }
 }
 export default StartGame
