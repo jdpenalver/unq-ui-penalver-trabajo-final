@@ -1,38 +1,28 @@
 import React, { useContext } from 'react'
+import { useState } from 'react'
 import "../css/carta.css"
 import { P1Context } from './Provider/GameContext'
 
-const Carta = ({idDeFoto, urlFoto}) => {
+const Carta = ({idDeFoto, urlFoto, handler, leHicieron}) => {
 
-    let seleccionado = false
-    const {usuario1} = useContext(P1Context)
+    // let seleccionado = false
+    // const {usuario1} = useContext(P1Context)
+
+    const [selecionado, setSelecionado] = useState(false)
+
+     
+  const cambiarSelecionado = () => {
+    setSelecionado(!selecionado)
+  }
+ 
+  
+
+  const meHicieronClick = (e) => {
+    leHicieron(e, selecionado, cambiarSelecionado)
+  } 
     
-    
-    const guardarSelected = (e) => {
-        let seleccion= e.target.id
-
-        if(seleccionado) {
-            if (usuario1.selected === seleccion)
-            {
-            console.log('ganooo')
-            usuario1.setSelected('') 
-            } else {
-            seleccionado= false
-            console.log('Sin coicidencia')
-            usuario1.setSelected('') 
-            }
-        }else{
-            usuario1.setSelected(seleccion) 
-            seleccionado = true
-            console.log(seleccion)
-            console.log('================')
-            console.log(usuario1.selected)
-        }
-
-    }
-
     return (
-        <div onClick= {guardarSelected}  key={idDeFoto} className="carta">
+        <div onClick= { selecionado ? null : meHicieronClick  }  key={idDeFoto} className= { " carta " + (selecionado? "selecionado": "") }>
             <img id={idDeFoto} src={urlFoto} alt="" />
         </div>
     )

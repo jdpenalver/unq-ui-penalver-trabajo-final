@@ -11,6 +11,8 @@ const [fotos, setfotos]= useState([])
 const {size} = useParams()
 const [fotosDuplicadas, setfotosduplicadas]= useState([])
 
+const [selecionado, setselect]= useState('')
+
 useEffect(() => {
     let load = true
     if (load) {
@@ -25,6 +27,52 @@ useEffect(() => {
     }
     
 }, [])
+let cliqueados = []
+
+ const selectClick = (e, quitarClick, estado) => {
+    // cliqueados.push(quitarClick)
+    // console.log(estado)
+
+    // if (selecionado == '') {
+    //     setselect(e.target.id)
+    //     quitarClick()
+    // } else {
+    //     if(selecionado === e.target.id){
+    //         console.log("Gano")
+    //     }else {
+    //         console.log("Perdio")
+    //         cliqueados.forEach((hablitarClick) =>{ 
+    //             hablitarClick()
+    //         console.log(cliqueados)
+    //         })
+    //     }
+    //     setselect('')
+    // }
+}
+
+let fnSelecionar
+let elementoSelecionado
+
+const leHicieronClick = (e, selecionado, handlerEventClick) => {
+    if (!selecionado) {
+        handlerEventClick() //saca evento de click
+        if (!elementoSelecionado) {
+            elementoSelecionado= e.target.id
+            fnSelecionar = handlerEventClick // guardo event
+        } else {
+            if (elementoSelecionado == e.target.id) {
+                console.log("Gano")
+            }else{
+                console.log("Perdio")
+                fnSelecionar()
+                handlerEventClick()
+            }
+        }
+    } else {console.log("Ya estas Selecionado")}
+
+
+}
+
 
 let photoToTake;
 switch (size) {
@@ -41,13 +89,13 @@ switch (size) {
 }
 
 const estiloDeGrilla= "tamano-" + size
+
     return (
         <div className="cuadricula">
-            {console.log(fotos)}
             <div className={estiloDeGrilla}> 
             {
             fotosDuplicadas.map ((unaFoto) => 
-            <Carta idDeFoto={unaFoto.id} urlFoto ={unaFoto.src.small} /> )
+            <Carta leHicieron= {leHicieronClick} handler={selectClick} idDeFoto={unaFoto.id} urlFoto ={unaFoto.src.small} /> )
             }
             </div>
         </div>
