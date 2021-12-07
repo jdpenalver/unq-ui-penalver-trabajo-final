@@ -6,7 +6,9 @@ import Players from './componentes/Players';
 import SeleccionCuadricula from './componentes/SeleccionCuadricula';
 import Game from './componentes/Game';
 import { P1Provider } from './componentes/Provider/GameContext';
-
+import Tema from './componentes/Tema';
+import NoEncotrada from './componentes/NoEncotrada';
+import NotLogged from './componentes/NotLogged';
 
 
 function App() {
@@ -18,9 +20,12 @@ function App() {
             <Route path="game" element={<Game />}>
               <Route path="/game/players" element={<Players />}/>
               <Route path="/game/name" element={<PlayerName />}/>
+              <Route path="/game/theme" element={<Tema />}/>
               <Route path="/game/size" element={<SeleccionCuadricula />}/>
               <Route path="/game/startgame/:size" element={<StartGame />}/>
             </Route>
+            <Route path="/notLogged" element={<NotLogged/>} />
+            <Route path="*" element={<NoEncotrada/>} />
           </Routes>
         </BrowserRouter>
       </P1Provider>

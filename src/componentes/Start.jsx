@@ -1,31 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Api } from '../Api/Api';
-import { useState } from 'react';
-import UnaFoto from './UnaFoto';
-
 import "../css/main.css";
-
+import { useContext } from 'react'
+import { P1Context } from './Provider/GameContext'
+import { useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import { useLocation } from 'react-router';
 
 const Start = () => {
 
-const [fotos, setfotos] = useState([])
+    const {logged} = useParams()
 
-const obtenerFotos = () => {
-    Api.searchQTPhoto('nature', 2)
-        .then( fotos=> {
-             setfotos(fotos)
-             console.log(fotos)
-        })
-  };
+const location = useLocation()
 
     return (
         <div className="main">
             <Link to="/game/players">Start</Link>
-            <ul>
-                {fotos.map ((unaFoto) => <UnaFoto idDeFoto={unaFoto.id} urlFoto ={unaFoto.src.small} /> )}
-            </ul>
-            <button onClick= {obtenerFotos}> obtener fotos</button>
+            <h1> {location.state?'':location.state } </h1>
         </div>
     )
 }

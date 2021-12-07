@@ -1,8 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "../css/cuadricula.css"
+import { useContext } from 'react'
+import { P1Context } from './Provider/GameContext'
+import { Navigate, useNavigate } from 'react-router'
 
 const SeleccionCuadricula = () => {
+
+    const {usuario1} = useContext(P1Context)
+    const navigate = useNavigate()
+    
+    if ( !usuario1.Name || !usuario1.tema ) {
+        navigate("/notLogged")
+    }
+    
+
+
     return (
         <div className="cont ">
             <div className="grd-center">

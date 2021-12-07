@@ -1,11 +1,12 @@
 import React from 'react'
-import { Outlet} from 'react-router'
+import { Outlet, useParams} from 'react-router'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { P1Context } from './Provider/GameContext'
 
 const Game = () => {
     const {usuario1} = useContext(P1Context);
+    const parama = useParams()
     
     return (
             <nav>
