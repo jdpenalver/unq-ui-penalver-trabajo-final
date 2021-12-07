@@ -40,7 +40,7 @@ useEffect(() => {
         location = {pathname:"/",
         state: {msg:'No esta faltan los datos para empezar a jugar, Empecemos de nuevo'}
         }
-        navigate(location)
+        
     }
     
 }, [])

@@ -12,11 +12,12 @@ const Start = () => {
     const {logged} = useParams()
 
 const location = useLocation()
+console.log(location)
 
     return (
         <div className="main">
             <Link to="/game/players">Start</Link>
-            <h1> {location.state?'':location.state } </h1>
+            <h1> {location.state?location.state.msg:'' } </h1>
         </div>
     )
 }
