@@ -8,6 +8,7 @@
 } 
 .start {
     font-size: 3rem;
+    text-align: center;
     text-decoration: none;
     color: whitesmoke;
     border: solid black 5px;
@@ -24,5 +25,11 @@
     font-size: 3.1rem;
     color: darkblue;
     box-shadow: -30px -30px -30px black;
+}
+
+.main h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
