@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import "../css/game.css"
 import Carta from './Carta'
-import { useLocation, useNavigate, useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { Api } from '../Api/Api'
 import { funcionesArray } from '../funciones/arrayFn'
 import { P1Context } from './Provider/GameContext'
 import { useContext } from 'react'
+import Game from './Game'
 import Gano from './Gano'
+
 
 const StartGame = ( ) => {
 
@@ -17,44 +19,38 @@ const [fotosDuplicadas, setfotosduplicadas]= useState([])
 const {usuario1} = useContext(P1Context)
 const [haGanado, setHaGando]= useState(false)
 const [cantDeCartas, setCatidadDeCartas] = useState(2)
-const [logeado, setLogueado] = useState(false)
-const navigate = useNavigate()
-let location = useLocation()
 
+const navigate = useNavigate()
 const puntosPorPar = 10
 
+
 useEffect(() => {
-    if (logeado)
-    {
-    let load = true
-    if (load) {
-        Api.searchQTPhoto(usuario1.tema, photoToTake)
+    if (datosCargardos){
+        Api.searchQTPhoto('wood', tamaño)
             .then( fotos=> {
                  setfotos(fotos)
                 let tmp = funcionesArray.duplicarValores(fotos)
-                setfotosduplicadas(funcionesArray.mezclar(tmp))                  
+                setfotosduplicadas(funcionesArray.mezclar(tmp)) 
+                console.log(fotosDuplicadas)                 
         })
-        load=false
-    }
-    }else {
-        location = {pathname:"/",
-        state: {msg:'No esta faltan los datos para empezar a jugar, Empecemos de nuevo'}
-        }
-        
+    } else {
+        irAPathConError("/info",'Parece que no has comenzado desde el comienzo,vamos a hacerlo!')        
     }
     
 }, [])
+const irAPathConError = (path, err) => { navigate(path,  {state: { err}} )}
+
+const datosCargardos =  usuario1.Name != ''
 
 
+const verificarSiGano = () => {
+    if (cantDeCartas == fotosDuplicadas.length) {
+        setHaGando(true)
+    }
+}
 let selecion = {
     id:'', 
     fn:''
-}
-const verificarSiGano = () => {
-    if (cantDeCartas == fotosDuplicadas.length) {
-        
-        setHaGando(true)
-    }
 }
 
 let enEspera= true    
@@ -90,16 +86,16 @@ const verficiarCarta =  (set, estaSeleccionado,id) => {
     }
 }
 
-let photoToTake;
+let tamaño;
 switch (size) {
     case '2x2':
-         photoToTake = 2;
+         tamaño = 2;
          break;
     case '4x4': 
-        photoToTake = 8
+        tamaño = 8
         break;
     case '8x8': 
-        photoToTake = 16
+        tamaño = 16
         break;
     default: return <h1>No Size Found </h1>
 }
@@ -107,17 +103,19 @@ switch (size) {
 const estiloDeGrilla= "tamano-" + size
 if (!haGanado) {
     return (
-        <div className="cuadricula">
-            <div className={estiloDeGrilla}> 
-            {
-            fotosDuplicadas.map ((unaFoto) => 
-            <Carta padre={verficiarCarta} idDeFoto={unaFoto.id} urlFoto ={unaFoto.src.small} /> )
-            }
+        <div className="game-container">
+            <Game></Game>
+            {/* <div className="game-cuadricula"> */}
+              <div className={estiloDeGrilla}> 
+                {fotosDuplicadas.map ((unaFoto) => 
+                 <Carta padre={verficiarCarta} idDeFoto={unaFoto.id} urlFoto ={unaFoto.src.small} />)}
+               {/* </div> */}
             </div>
-        </div>
-    )
-    }else {
+        </div> )
+    
+    } else {
         return <Gano></Gano>
     }
 }
+
 export default StartGame

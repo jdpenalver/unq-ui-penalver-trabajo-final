@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import "../css/playerName.css"
 import { useContext } from 'react'
 import { P1Context } from './Provider/GameContext'
 import { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
 const PlayerName = () => {
 
@@ -16,29 +15,20 @@ const PlayerName = () => {
         e.preventDefault()
         if(e.target.name.value == '') {
             console.log("error")
-            setError('Falta Espesificar el nombre de usuario')
+            setError('Por favor ingresa tu nombre')
         }else {
         usuario1.setName(e.target.name.value)
         navigate("/game/theme")
         }
     }
-    // onChange={onChangeHandler}
     return (
-    <div className="cont">
-        <div className="center" >
-        <form onSubmit={handlerSummit} action="">
-           <label htmlFor=""> Nombre del jugador
-            </label>
-            <div className="input-group">
-                <input  name="name" className="label" type="text" />
-               <button>siguiente </button>
-               { userError?<h1>{userError} </h1>:''}
-            </div>
-            </form>
-        </div>
-            
-        
-     </div>
+    <div className="player-name-cont">
+        <form className="player-name-center" onSubmit={handlerSummit} action="">
+            <input className="player-name-input" placeholder="Ingresa tu nombre" name="name" type="text"/>
+            <button className="player-name-btn">siguiente </button>
+            { userError?<h3>{userError} </h3>:''}
+        </form>
+    </div>
     )
 }
 

@@ -4,14 +4,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-
-/* body {
-min-height: 100vh;
-width: 100%;
-border: 1px dashed black;
-background-color:  cornflowerblue
-} */
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -1,0 +1,35 @@
+.gameBar-cont{
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    gap: 5px;
+    background-color: lightblue;
+    height: 100%;
+}
+
+.gameBar-text {
+    padding: 0.2rem;
+    user-select: none;
+    line-height: 1.5;
+    margin: auto;
+    font-size: 1.5rem;
+    border: solid 3px black;
+    background: grey;
+    color: blanchedalmond;
+    /* letter-spacing: 2px; */
+}
+.gameBar-btn{
+    background: black;
+    border: solid 3px black;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 2s;
+}
+.gameBar-btn:hover{
+    color: red;
+}

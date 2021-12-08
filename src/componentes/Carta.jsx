@@ -12,14 +12,17 @@ const Carta = ({idDeFoto, urlFoto, padre, leHicieron}) => {
   //   setSelecionado(!selecionado)
   // }
  
-  
+  const changeClass = (e) =>{
+    e.target
+  }
+
   const handlerSelecion = () => {
    padre(setSelecionado, selecionado,idDeFoto)
   }
 
   if (selecionado) {
     return (
-    <div className="carta" onClick={handlerSelecion} id={idDeFoto}  key={idDeFoto}>
+    <div className="carta" onTransitionEnd={} onClick={handlerSelecion} id={idDeFoto}  key={idDeFoto}>
       <CartaLlena idDeFoto={idDeFoto} urlFoto={urlFoto}></CartaLlena>
     </div>
     )

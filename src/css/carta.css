@@ -4,11 +4,12 @@
     display: flex;
     width: 10rem;
     height: 10rem;
-    border: 1px dashed red;;
+    border: 1px solid red;
+    box-shadow: 5px 6px 15px black;
+    transition: all 1s;
 }
-.selecionado {
-    background-color: red;
-}
-.hide {
-    display: none;
-}
+.carta-vuelta{
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}    

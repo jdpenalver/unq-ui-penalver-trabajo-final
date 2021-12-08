@@ -1,20 +1,58 @@
-.cont{
+.player-name-cont{
     min-height: 100vh;
-    
-    display: grid;
-    grid-template-rows: 0.1fr 1fr;
-    background-color: sienna;
-}
-
-.center{
     display: flex;
-    background-color: skyblue;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    background-color: rgb(211, 117, 164);
 }
-.input-group{
-    width: 50%;
+.player-name-center{
     display: grid;
-    grid-template-columns: 0.2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap:15px;
+}
+.player-name-btn{
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    border-radius: 10px;
+    border: black 4px solid;
+    background-color: grey;
+    color: whitesmoke;
+    transition: all 0.5s;
+    box-shadow: 5px 6px 15px black;
+}
+
+.player-name-btn:hover {
+    font-size: 2.1rem;
+    color: blue;
+}
+.player-name-input{
+    text-align: center;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding-left: 1rem;
+    border: black 4px solid;
+    box-shadow: 5px 6px 15px black;
+}
+.player-name-input::placeholder{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.player-seleccion{
+    display: grid;
+    gap: 2rem;
+    grid-template-rows: 1fr 1fr;   
+}
+
+.player-name-label{
+    display: block;
+}
+
+.player-name-cont h3 {
+    color: black;
+    text-align: center;
+    background-color: #914e6f;
 }
