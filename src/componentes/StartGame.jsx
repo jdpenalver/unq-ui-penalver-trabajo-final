@@ -105,11 +105,9 @@ if (!haGanado) {
     return (
         <div className="game-container">
             <Game></Game>
-            {/* <div className="game-cuadricula"> */}
               <div className={estiloDeGrilla}> 
                 {fotosDuplicadas.map ((unaFoto) => 
                  <Carta padre={verficiarCarta} idDeFoto={unaFoto.id} urlFoto ={unaFoto.src.small} />)}
-               {/* </div> */}
             </div>
         </div> )
     

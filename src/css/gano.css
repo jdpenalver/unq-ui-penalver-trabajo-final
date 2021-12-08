@@ -1,0 +1,50 @@
+.gano{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100%;
+        background-color:  cornflowerblue
+
+}
+
+.gano-link{
+    text-align: center;
+        font-size: 2rem;
+        text-decoration: none;
+        color: whitesmoke;
+        border: solid black 5px;
+        padding: 3rem;
+        background-color: grey;
+        border-radius: 50px;
+        box-shadow: 5px 6px 15px black;
+        text-transform: uppercase;
+        transition: all 0.8s ;
+        font-weight: bold;
+}
+.gano-link:hover{
+    color: greenyellow;
+    font-size: 2.2rem;
+}
+
+.gano-finalizar{
+        text-align: center;
+        font-size: 1rem;
+        text-decoration: none;
+        color: whitesmoke;
+        border: solid black 5px;
+        padding: 1rem;
+        width: 50%;
+        margin: auto;
+        background-color: grey;
+        border-radius: 50px;
+        box-shadow: 5px 6px 15px black;
+        text-transform: uppercase;
+        transition: all 0.8s ;
+        font-weight: bold;
+}
+.gano-finalizar:hover{
+    background-color: black;
+    color: red;
+    transform: scale(1.1);
+}

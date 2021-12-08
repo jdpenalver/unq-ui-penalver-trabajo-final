@@ -5,15 +5,16 @@ import { useState } from 'react';
 
 export const GameContext = createContext();
 export const P1Context = createContext();
+export const P2Context = createContext();
 
 export const P1Provider = ({children}) => {
   
     const [Name, setName] = useState('')
     const [Score, setScore] = useState(0)
-    const [tema, setTema] = useState('')
-    // const [logeado, setLogueado] = useState(false)
+
+ 
   
-     const usuario1 = {Name,setName,Score,setScore,setTema,tema}      
+     const usuario1 = {Name,setName,Score,setScore}      
 
       return (
           <P1Context.Provider value = {{usuario1}}>
@@ -21,5 +22,3 @@ export const P1Provider = ({children}) => {
           </P1Context.Provider>
       )
   }
-
-

@@ -22,7 +22,7 @@ const Tema = () => {
                             <h1 id="4"> Normal </h1>
                             <h3 id="4"> 4 x 4</h3>
                     </Link>
-                    <Link  className="tema-caja" to="/game/startgame/4x4"> 
+                    <Link  className="tema-caja" to="/game/startgame/8x8"> 
                         <h1 id="8"> Dificil </h1>
                         <h3 id="8"> 8 x 8</h3>
                     </Link>
